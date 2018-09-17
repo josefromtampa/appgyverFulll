@@ -1,0 +1,39 @@
+{
+  "name": "angular-ui-laicos",
+  "version": "0.0.1",
+  "description": "Laicos Angular UI",
+  "main": "angular-ui-laicos.js",
+  "dependencies": {
+    "angular": "~1.4.x"
+  },
+  "devDependencies": {
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-angular-templatecache": "^1.6.0",
+    "gulp-concat": "^2.5.2",
+		"gulp-minify-html": "^1.0.2",
+    "gulp-sequence": "^0.3.2",
+    "gulp-uglify": "^1.2.0"
+  },
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laicos/angular-ui-laicos.git"
+  },
+  "keywords": [
+    "angular",
+    "laicos",
+    "ui",
+    "angular",
+    "ui",
+    "kit"
+  ],
+  "author": "Lee Fernandes <lee@laicos.com> (https://github.com/laicosly/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Laicos/angular-ui-laicos/issues"
+  },
+  "homepage": "https://github.com/Laicos/angular-ui-laicos#readme"
+}

@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="./css/annotator.css" />
+
+<script src="/components/ngCordova/dist/ng-cordova.min.js"></script>
+<script src="/components/jquery/dist/jquery.min.js"></script>
+<script src="/components/jquery.panzoom/dist/jquery.panzoom.min.js"></script>
+<script type="text/javascript" src="/app/data-api.js"></script>
+
+<div ng-controller="Annotator" class="html-header-body full-size">
+
+    <div class="nav-bar-header primary-back">
+		<div class="nav-bar-title">Annotating Photo</div>
+        
+		<i class="left-10 nav-icon super-ios-close-empty"
+				 ng-click="cancel()"></i>
+		<i class="right-10 nav-icon super-ios-checkmark-empty"
+				 ng-click="save()"></i>
+	</div>
+
+    <div class="parent">
+        <div id="panzoom">
+            <canvas id="canva" class="canvas-style">
+            </canvas>
+    </div>
+
+    <div ng-show="mode == 'draw' || mode == 'paint'" class="annotator-colors animate-fadeInUp">
+         <i ng-class="brushColor == 'black' ? 'super-ios-circle-filled' : 'super-ios-circle-outline'" class="ion black-color" ng-click="setBrushColor('black')"></i>
+        <i ng-class="brushColor == 'red' ? 'super-ios-circle-filled' : 'super-ios-circle-outline'"class="ion red-color" ng-click="setBrushColor('red')"></i>
+        <i ng-class="brushColor == 'blue' ? 'super-ios-circle-filled' : 'super-ios-circle-outline'"class="ion blue-color" ng-click="setBrushColor('blue')"></i>
+        <i ng-class="brushColor == 'yellow' ? 'super-ios-circle-filled' : 'super-ios-circle-outline'"class="ion yellow-color" ng-click="setBrushColor('yellow')"></i>
+ 
+    </div>
+    <div class="annotator-buttons">
+        <i ng-class="mode == 'zoom' ? 'secondary-color' : 'white-color'" class="ion super-android-contract" ng-click="setMode('zoom')"></i>       
+        <i ng-class="mode == 'draw' ? 'secondary-color' : 'white-color'" class="ion super-edit" ng-click="setMode('draw')"></i>
+        <i ng-class="mode == 'paint' ? 'secondary-color' : 'white-color'" class="ion super-paintbrush" ng-click="setMode('paint')"></i>
+        <i class="ion super-ios-refresh-empty" ng-click="clearAnnotations()"></i>
+    </div>
+    <div ng-show="isBusy" class="busy-splash full-size primary-back-transparent animate-fadeInUp">
+        <i class="super-loading-c"></i>
+    </div>
+</div>

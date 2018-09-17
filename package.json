@@ -1,0 +1,9 @@
+{
+  "name": "data_collector3",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "grunt-steroids": "1.x"
+  }
+}

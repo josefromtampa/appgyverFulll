@@ -1,0 +1,147 @@
+﻿body {
+    overflow: auto; 
+}
+.form-splash {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 9999;
+    text-align: center;
+    color: #fff;
+}
+    .form-splash i {
+        font-size: 75px;
+        position: relative;
+        top: calc(50% - 38px);
+    }
+.prompt-style {
+    background-color: #fff;
+    position: absolute;
+    width: 75%;
+    top: 35%;
+    left: 12%;
+    margin: auto;
+    z-index: 99999;
+    padding: 15px;
+    border-radius: 15px;
+}
+.prompt-style h2 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.prompt-style button {
+    width: 100%;
+    height: 60px;
+    margin: auto;
+}
+.prompt-msg {
+    margin-bottom: 5px;
+}
+.prompt-input{
+    margin: auto;
+    width: 100%;
+}
+.form-progress {
+    height: 5px;
+    position: absolute;
+    z-index: 99;
+}
+.card-body-text {
+    margin-bottom: 50px;
+}
+.card-content {
+    padding-top: 15px !important;
+}
+.item-section {
+
+}
+.question.hastext {
+    margin-top: 40px;
+}
+.question-control {
+    margin-top: 20px;
+}
+    .question-control textarea {
+        background-color: rgba(0, 0, 0, .03) !important;
+    }
+.mui-form-group {
+    margin-bottom: 5px !important;
+}
+.wizard-container {
+    padding-bottom: 50px !important;
+}
+.wizard-buttons {
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    padding: 0px 5px 0px 5px;
+    border-top: 6px solid #e5e5e5;
+    background-color: #fff;
+}
+.wizard-buttons button {
+    font-size: 16px;
+}
+    .wizard-buttons button.review {
+        position: absolute;
+        right: 5px;
+    }
+
+.summary-review {
+    background-color: #fff;
+    position: absolute;
+    top: 65px;
+    left: 0px;
+    min-height: 100%;
+    width: 100%;
+    z-index: 970;
+}
+.review-body {
+    width: 90%;
+    margin: auto auto 60px auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+.review-body::-webkit-scrollbar { 
+    display: none; 
+}
+.review-section {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+}
+.review-card-body {
+    margin-bottom: 10px;
+}
+.review-question {
+    margin: 15px auto 5px auto;
+}
+.review-answer {
+    margin-left: 15px;
+}
+.review-buttons {
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    -webkit-justify-content: space-around;
+    border-top: 6px solid #e5e5e5;
+    background-color: #fff;
+    z-index: 980;
+}
+    .review-buttons button {
+        font-size: 16px;
+    }
+    .review-buttons button i {
+        padding-right: 5px;
+    }
+
+/* All Tabs */
+@media only screen and (min-width: 650px) {
+    
+    .card-body-text {
+        margin-bottom: 75px;
+    }
+
+}

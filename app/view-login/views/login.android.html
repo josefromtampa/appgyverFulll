@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="./css/login.css" />
+<script type="text/javascript" src="/app/data-api.js"></script>
+
+<div ng-controller="LoginController" class="login primary-back">
+
+    <div class="login-form">
+
+        <div class="logo login-logo">
+        </div>
+        <form name="FormLogin"
+				    ng-submit="login()">
+
+            <div class="mui-form-group">
+                <input type="text" class="mui-form-control transparent-textbox"
+                    ng-model="user.username"
+                    ng-class="{'textbox-filled': user.username,'textbox-error': errors.username}">
+                <label class="mui-form-floating-label secondary-text-color">Username</label>
+              </div>
+            <div class="mui-form-group">
+                <input type="password" class="mui-form-control transparent-textbox"
+                    ng-model="user.password"
+                    ng-class="{'textbox-filled': user.password,'textbox-error': errors.password}">
+                <label class="mui-form-floating-label secondary-text-color">Password</label>
+              </div>
+
+		    <button type="submit"
+						    class="mui-btn mui-btn-default full-width"
+                            ng-disabled="isBusy">
+                <i ng-show="isBusy" class="super-loading-a"></i>
+			    LOG IN
+		    </button>
+	    </form>
+    </div>
+    
+	<pre ng-if="error" class="center-text alert font-small" role="alert">{{error}}
+	</pre>
+    <div class="footer">Copyright&copy; IBHS {{year}}</div>
+
+</div>

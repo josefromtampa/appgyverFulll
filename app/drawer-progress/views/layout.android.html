@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html class="full-size">
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <title><%= yield.viewName %></title>
+
+  <link rel="stylesheet" href="/components/supersonic/css/supersonic.css" />
+  <link rel="stylesheet" href="/app/common/stylesheets/application.css" />
+  <link rel="stylesheet" href="/app/common/stylesheets/theme.css" />
+  <link rel="stylesheet" href="/app/common/stylesheets/appoverride.css" />
+  <link rel="import" href="/components/supersonic/components/import.html">
+    <link rel="stylesheet" href="./css/progress.css" />
+
+  <script src="http://localhost/cordova.js"></script>
+  <script src="/components/steroids-js/steroids.js"></script>
+  <script src="/components/angular/angular.js"></script>
+  <script src="/components/supersonic/supersonic.js"></script>
+  <script src="/components/webcomponentsjs/webcomponents.js"></script>
+    <script src="/components/lodash/lodash.min.js"></script>
+
+  <% _.each(yield.modules, function(module) { %>
+  <script src="/app/<%= module %>.js"></script>
+  <% }); %>
+</head>
+<body ng-app="<%= yield.moduleName %>" class="dark-back">
+
+<%= yield.view %>
+
+</body>
+</html>

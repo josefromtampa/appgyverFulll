@@ -1,0 +1,25 @@
+{
+  "name": "data_collector3",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "angular": "1.3.x",
+    "supersonic": "1.x",
+    "angular-carousel": "~0.3.12",
+    "jqlite": "~1.1.1",
+    "angular-animate": "~1.4.1",
+    "angular-touch": "~1.4.1",
+    "bootstrap": "~3.3.5",
+    "fontawesome": "~4.3.0",
+    "mui": "~0.1.18",
+    "lodash": "~3.10.0",
+    "ngCordova": "~0.1.17-alpha",
+    "async": "~1.4.0",
+    "jquery.panzoom": "~2.0.5",
+    "jquery": "~2.1.4",
+    "web-pull-to-refresh": "git@github.com:apeatling/web-pull-to-refresh"
+  },
+  "resolutions": {
+    "angular": "1.5.9-build.5132+sha.f582f9e"
+  }
+}

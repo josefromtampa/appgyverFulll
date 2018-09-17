@@ -1,0 +1,132 @@
+<link rel="stylesheet" href="/components/angular-carousel/dist/angular-carousel.min.css" />
+<link rel="stylesheet" href="/components/laicos-datacollector/css/laicos-datacollector.css" />
+<link rel="stylesheet" href="/components/laicos-datacollector/css/theme.css" />
+<link rel="stylesheet" href="./css/form.css" />
+<link rel="stylesheet" href="./css/form.override.css" />
+
+
+  <script src="/components/angular-ui-laicos/src/directives/Swipe.js"></script>
+<script src="/components/async/dist/async.min.js"></script>
+<script src="/components/ngCordova/dist/ng-cordova.min.js"></script>
+<script src="/components/appgyver/Laicos.js"></script>
+<script src="/components/appgyver/ActionSheet.js"></script>
+<script src="/components/appgyver/Camera.js"></script>
+<script type="text/javascript" src="/app/data-api.js"></script>
+<script src="/components/angular-carousel/dist/angular-carousel.min.js"></script>
+<script src="/components/laicos-datacollector/controls/control.js"></script>
+<script src="/components/laicos-datacollector/laicos-datacollector-forms.js"></script>
+
+<div ng-controller="FormController" class="html-header-body full-size third-back">
+
+    <div class="nav-bar-header primary-back">
+		<div class="nav-bar-title">{{userForm.name}}</div>
+        
+		<i class="left-10 nav-icon super-navicon"
+				 ng-click="openDrawer()"></i>
+		<i class="right-10 nav-icon super-ios-home-outline"
+				 ng-click="goHome()"></i>
+	</div>
+    <div class="form-progress secondary-back" ng-style="{'width': (userForm.progress.currentPosition/(cards.length - 1)) * 100 + '%'}">
+    </div>
+    <div class="full-size">
+        <ul rn-carousel class="image card-container"
+            rn-carousel-index="currentPosition"
+             rn-carousel-buffered rn-carousel-transition="slide"
+            rn-carousel-easing="easeOutSine"
+            rn-carousel-duration="400">
+          <li ng-repeat="card in $parent.cards = (userForm.form.cards | cardDependencyFilter:dependencyList) track by card.id">
+              
+              <div id="{{card.id}}" class="card-body">
+                  <div class="card-content wizard-container">
+                      <h4 class="center-text secondary-color">{{card.section.title.toUpperCase() + ' : ' + card.title.toUpperCase()}}</h4>
+                      
+                      <h2 class="card-body-text primary-color" ng-if="card.body" ng-bind-html="card.body"></h2>
+                      
+                      <!-- Questions -->
+                      <div ng-class="{'hastext': question.text}" class="question" 
+                           ng-repeat="question in questions = (card.questions | questionDependencyFilter:dependencyList) track by question.id">
+                          
+                          <datacollector-control type="{{question.type.key}}" question="question"
+                              mode="editMode" disable="readOnly"
+                              action-event="controlAction"
+                              resolve-remote-url="resolveRemoteURL"></datacollector-control>
+                      </div>
+                  </div>
+                </div>
+          </li>
+
+        </ul>
+        <div class="wizard-buttons">
+            <button ng-show="currentPosition > 0" 
+                class="float-left mui-btn mui-btn-primary mui-btn-flat secondary-color animate-fadeInUp"
+                ng-click="back()">                          
+                <i class="super-ios-arrow-left"></i>
+                Back
+            </button>
+            <button ng-show="currentPosition < cards.length - 1" class="animate-fadeInUp float-right mui-btn mui-btn-primary mui-btn-flat secondary-color"
+                ng-click="next($event)">
+                Next
+                <i class="super-ios-arrow-right"></i>
+            </button>            
+            <button ng-show="currentPosition == cards.length - 1" class="review animate-fadeInUp float-right mui-btn mui-btn-primary mui-btn-flat secondary-color"
+                ng-click="review()">
+                Review
+                <i class="super-ios-checkmark-empty"></i>
+            </button>
+        </div>
+
+
+    </div>
+
+
+    <div ng-show="showReview" class="summary-review animate-fadeInUp">
+        <h4 class="center-text secondary-color">Review</h4>
+        <div ng-hide="readOnly">
+            <h2 class="center-text">All Done!</h2>
+            <h5 class="center-text">Please review the form below before you submit.</h5>
+        </div>
+
+        <div class="review-body">
+
+            <div class="section-body" ng-repeat="section in sections">
+
+                <div class="review-section" ng-repeat="card in section.cards">
+                    <div ng-init="cardData = card">
+
+                        <h4 class="secondary-color">{{section.title + ' : ' + cardData.title}}</h4>
+                        <div class="review-card-body primary-color" ng-if="cardData.body" ng-bind-html="cardData.body"></div>
+
+                        <div class="review-questions secondary-text-color" ng-repeat="question in cardData.questions">
+                            
+                          <datacollector-control type="{{question.type.key}}" question="question" mode="reviewMode" disabe="readOnly"></datacollector-control>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div ng-show="showReview" class="review-buttons animate-fadeInUpSlow">
+        <button class="mui-btn mui-btn-primary mui-btn-flat secondary-color" ng-click="hideReview()">       
+            <i class="super-ios-arrow-left"></i>Back</button>
+        <button ng-hide="readOnly" class="mui-btn mui-btn-primary mui-btn-flat secondary-color animate-fadeInUpSlow" ng-click="save(true)">       
+            <i class="super-ios-flag-outline"></i>Save & Close</button>
+        <button ng-hide="readOnly" class="mui-btn mui-btn-primary mui-btn-flat secondary-color animate-fadeInUpSlow" ng-click="submit()">       
+            <i class="super-ios-checkmark-empty"></i>Submit</button>
+    </div>
+
+  <div ng-show="isBusy" class="form-splash full-size primary-back animate-fadeInUp">
+        <i class="super-loading-c"></i>
+       <span>{{busyMessage}}</span>
+  </div>
+    <div ng-show="prompt.show" class="prompt-style">
+        <h2>{{prompt.title}}</h2>
+        <div class="prompt-msg">{{prompt.message}}</div>
+        <input class="prompt-input" ng-model="prompt.value" />
+        <button class="mui-btn mui-btn-primary mui-btn-flat secondary-color" ng-click="prompt.callback();">{{prompt.button}}</button> 
+    </div>
+
+</div>

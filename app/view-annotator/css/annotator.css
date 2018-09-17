@@ -1,0 +1,41 @@
+﻿
+.annotator-colors {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    bottom: 50px;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    -webkit-justify-content: space-around;
+    font-size: 36px;
+    background-color: rgba(0, 0, 0, .2);
+}
+.annotator-buttons {
+    width: 100%;
+    height: 50px;
+    background-color: rgba(0, 0, 0, .2);
+    position: fixed;
+    bottom: 0px;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    -webkit-justify-content: space-around;
+    font-size: 36px;
+    color: rgba(255, 255, 255, .75);
+}
+#canva {
+
+}
+.black-color {
+    color: #000;
+}
+.blue-color {
+    color: #1d20ef;
+}
+.red-color {
+    color: #cc0000;
+}
+.yellow-color {
+    color: #ffd800;
+}

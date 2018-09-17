@@ -1,0 +1,13 @@
+{
+  "name": "appgyver",
+  "homepage": "https://github.com/Laicos/appgyver",
+  "_release": "ba70937b80",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "ba70937b804f1951aec1e58441068879ddc1e2fd"
+  },
+  "_source": "git@github.com:Laicos/appgyver.git",
+  "_target": "*",
+  "_originalSource": "git@github.com:Laicos/appgyver.git"
+}

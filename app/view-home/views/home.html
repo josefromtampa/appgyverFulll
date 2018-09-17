@@ -1,0 +1,138 @@
+<link rel="stylesheet" href="/components/angular-carousel/dist/angular-carousel.min.css" />
+<link rel="stylesheet" href="/app/common/stylesheets/progress-pie.css" />
+<link rel="stylesheet" href="/components/web-pull-to-refresh/lib/genericons/genericons.css" />
+<link rel="stylesheet" href="./css/home.css" />
+<link rel="stylesheet" href="./css/override.css" />
+
+<script type="text/javascript" src="/app/data-api.js"></script>
+<script src="/components/angular-carousel/dist/angular-carousel.min.js"></script>
+<script src="/components/web-pull-to-refresh/lib/hammer.2.0.4.js"></script>
+<script src="/components/web-pull-to-refresh/lib/wptr.1.1.js"></script>
+
+<div ng-controller="HomeController"  class="html-header-body full-size home-body third-back">
+
+   <div class="nav-bar-header header-logo primary-back">
+		<i class="left-10 nav-icon super-ios-gear-outline"
+				 ng-click="showSettings = true"></i>
+		<i class="right-10 nav-icon super-ios-search"
+				 ng-click="showSearch = !showSearch"></i>
+	</div>
+        <div ng-show="showSearch" class="search-container animate-bounceInDown-100">
+              <label class="item item-input">
+                <i class="super-ios-search placeholder-icon"></i>
+                <input type="text" placeholder="Search" ng-model="filter">
+                <i class="filter-clear super-ios-close-empty" ng-click="filter = ''"></i>
+
+              </label>
+        </div>
+
+        <div class="dashboard-menu secondary-text-color">
+            <label ng-class="{'menu-selected': viewIdx == 0}" ng-click="viewIdx = 0">
+                CREATE NEW
+                <div ng-show="viewIdx == 0" class="menu-selector arrow-down animate-bounceInDown-5"></div>
+            </label>
+            <label ng-class="{'menu-selected': viewIdx == 1}" ng-click="viewIdx = 1">
+                MY FORMS
+                <div ng-show="viewIdx == 1" class="menu-selector arrow-down animate-bounceInDown-5"></div>
+            </label>
+        </div>
+
+    <div id="form-progress" class="ptr">
+        <!-- Pull down arrow indicator -->
+        <span class="genericon genericon-next"></span>
+
+        <!-- CSS-based loading indicator -->
+        <div class="loading">
+            <span id="l1"></span>
+            <span id="l2"></span>
+            <span id="l3"></span>
+        </div>
+    </div>
+        <ul id="form-content" rn-carousel class="image card-container wptr-content" rn-carousel-index="viewIdx" rn-carousel-transition="slide">
+            <li>                
+                <div id="card0" class="card-body">
+                    <div class="card-content">
+                        <ul class="list">
+                            <li class="dashboard-item" ng-class="{'no-borders': $index == 0}" 
+                                ng-repeat="template in templateList = (templates | filter: { name: filter })"
+                                ng-click="openForm('template', template)">
+                                <div class="item-name primary-text-color">{{template.name}}</div>
+                                <div class="item-desc secondary-text-color">{{template.description}}</div>
+                            </li>
+                        
+                            <li class="center-text secondary-text-color" ng-if="templateList.length === 0">No forms available</li>
+                        </ul>
+                    </div>
+                </div>
+             </li>
+            <li>
+                <div id="card1" class="card-body">
+                    <div class="card-content">
+                        <div class="title secondary-text-color">SAVED</div>
+                        <ul class="list">
+                            <li class="dashboard-item" ng-repeat="savedForm in saves = (myForms | filter: filterSaves)"
+                                 ng-class="{'no-borders': $index == 0}"
+                                ng-click="openForm('userForm', savedForm)" >
+                                <div class="item-text">
+                                    <div class="item-name primary-text-color">{{savedForm.name }}</div>
+                                    <div class="item-desc secondary-text-color">{{savedForm.identifier}}</div>
+                                </div>
+                                <div class="item-progress progress-pie-chart" ng-class="{'gt-50': savedForm.progress.percent > 50}">
+                                  <div class="ppc-progress">
+                                    <div class="ppc-progress-fill secondary-back" 
+                                        ng-style="{'transform': 'rotate(' + 360*savedForm.progress.percent/100 + 'deg)', '-webkit-transform': 'rotate(' + 360*savedForm.progress.percent/100 + 'deg)'}"></div>
+                                  </div>
+                                  <div class="ppc-percents">
+                                    <div class="pcc-percents-wrapper">
+                                      <span class="secondary-color">{{savedForm.progress.percent}}%</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="item-delete" ng-click="deleteForm(savedForm);$event.stopPropagation();">
+                                    <i class="super-ios-close-empty secondary-text-color font-xlarge"></i>
+                                </div>
+                            </li>
+                            <li class="center-text secondary-text-color" ng-if="saves.length === 0">You have no saved forms</li>
+                        </ul>
+                    </div>
+
+                    <div class="separator third-back"></div>
+                    <div class="card-content">
+                        <div class="title secondary-text-color">SUBMITTED</div>
+                        <ul class="list">
+                            <li class="dashboard-item" ng-repeat="submittedForm in submits = (myForms | filter: filterSubmitted)"
+                                 ng-class="{'no-borders': $index == 0}"
+                                ng-click="openForm('userForm', submittedForm)" >
+                                <div class="item-name primary-text-color">{{submittedForm.name}}</div>
+                                <div class="item-desc secondary-text-color">{{submittedForm.identifier}}</div>
+                            </li>
+                            <li class="center-text secondary-text-color" ng-if="submits.length === 0">You have no submitted forms</li>
+                        </ul>
+                    </div>
+                </div>
+             </li>
+
+        </ul>
+    
+    
+
+    <div ng-show="showSettings" class="settings-view full-size html-header-body animate-fadeInUp">
+        <i class="left-10 nav-icon close-settings super-ios-close-empty" ng-click="showSettings = false"></i>
+        <div class="nav-bar-title">Settings</div>
+
+        <div class="settings-body">
+            <label>
+                LOGGED IN AS
+            </label>
+            <div class="settings-value">{{userEmail}}</div>
+
+            
+        </div>
+        <button type="button" ng-click="logOut()" class="settings-logout transparent-button mui-btn mui-btn-default full-width">LOG OUT</button>
+
+    </div>
+    <div ng-show="isBusy" class="splash full-size primary-back animate-fadeInUp">
+        <i class="super-loading-c"></i>
+    </div>
+
+</div>

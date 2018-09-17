@@ -1,0 +1,23 @@
+﻿/* Overriding styles for Android */
+.html-header-body {
+	padding-top: 60px;
+}
+/* Header Styles */
+
+.header-logo {
+    background-position: center 20px;
+}
+.nav-bar-header {
+    height: 60px;
+}
+.nav-bar-title {
+    top: 25px;
+}
+.nav-icon {
+    top: 20px; 
+    width: 30px;
+    height: 30px;
+}
+.nav-text {
+    top: 25px;
+}

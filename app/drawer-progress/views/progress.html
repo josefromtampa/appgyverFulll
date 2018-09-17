@@ -1,0 +1,18 @@
+
+<script src="/components/laicos-datacollector/laicos-datacollector-forms.js"></script>
+
+<div ng-controller="ProgressController" class="progress-body full-size light-text-color">
+    <ul>
+        <li class="section-step" ng-repeat="section in sections">
+            <div class="section-step-label">{{section.title.toUpperCase()}}</div>
+            <ul>
+                <li ng-class="{'secondary-back': card.index == position }" 
+                    class="card-step" ng-repeat="card in section.cards"
+                    ng-click="setPosition(card)">
+                    {{card.title}}
+
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

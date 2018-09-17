@@ -1,0 +1,13 @@
+{
+  "name": "angular-ui-laicos",
+  "homepage": "https://github.com/Laicos/angular-ui-laicos",
+  "_release": "c770429867",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c7704298670c0065ad60f4dc5516d56ef6f633ef"
+  },
+  "_source": "git@github.com:Laicos/angular-ui-laicos.git",
+  "_target": "*",
+  "_originalSource": "git@github.com:Laicos/angular-ui-laicos.git"
+}

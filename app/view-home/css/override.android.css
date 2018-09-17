@@ -1,0 +1,8 @@
+﻿
+.filter-container {
+    top: 45px;
+}
+
+.search-container input::-webkit-input-placeholder {
+    padding-top: 0px;
+}

@@ -1,0 +1,19 @@
+﻿body {
+    min-height: 100%;
+}
+.progress-body {
+    padding: 25px 0px 0px 0px;
+}
+.section-step-label {
+    padding: 0px 0px 10px 25px;
+    font-weight: bold;
+}
+    .card-step {
+        padding-left: 50px;
+    }
+
+li {
+    list-style: none;
+    width: 100%;
+    padding: 10px 0px 10px 0px;
+}
